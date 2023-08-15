@@ -1,9 +1,10 @@
 'use client'
-import { useEffect } from 'react'
+import LoginForm from '@/app/components/LoginForm/LoginForm'
+import { useAuth } from '@/app/contexts/AuthContext'
 import { useRouter } from 'next/navigation'
-import { useAuth } from './contexts/AuthContext'
+import { useEffect } from 'react'
 
-export default function Page() {
+export default function Login() {
   const { isAuthenticated } = useAuth()
   const router = useRouter()
 
@@ -16,8 +17,12 @@ export default function Page() {
       }
     }
 
-    handleVerifyAuth() // Perform the initial authentication check
+    handleVerifyAuth()
   }, [isAuthenticated, router])
 
-  return <div>Checking authentication...</div>
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  )
 }
