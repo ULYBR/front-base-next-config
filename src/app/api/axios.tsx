@@ -1,3 +1,4 @@
+
 import axios, { AxiosError, AxiosInstance } from 'axios'
 import Router from 'next/router'
 import { destroyCookie, parseCookies } from 'nookies'
@@ -31,7 +32,7 @@ export const axiosInstance = (ctx = undefined): AxiosInstance => {
         const status = error.response.status
         if (status === 401 || status === 403) {
           destroyCookie(null, cookies['user_token'])
-          //Router.push('/')
+          Router.push('/')
         }
       }
       return Promise.reject(error)

@@ -18,7 +18,7 @@ export default function Login() {
     }
 
     handleVerifyAuth()
-  }, [isAuthenticated, router])
+  }, [isAuthenticated])
 
   return (
     <div>
