@@ -1,6 +1,6 @@
 'use client'
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { loginUser, getCurrentUser } from '../api/auth/api'
+import React, { createContext, useContext, useState } from 'react'
+import { loginUser } from '../api/auth/api'
 
 import { destroyCookie, parseCookies, setCookie } from 'nookies'
 import { useRouter } from 'next/navigation'
@@ -31,19 +31,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const router = useRouter()
   const isAuthenticated = !!user
 
-  // useEffect(() => {
-  //   async function fetchCurrentUser() {
-  //     try {
-  //       const response = await getCurrentUser()
-  //       setUser(response.data)
-  //     } catch (e) {
-  //       console.error('Error ao buscar informações do Usuário :', e)
-  //     }
-  //   }
-
-  //   fetchCurrentUser()
-  // }, [])
-
   const signIn = async (email: string, password: string) => {
     try {
       const response = await loginUser(email, password)
@@ -62,7 +49,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error('Erro ao efetuar o login:', e)
     }
   }
-
 
   const signOut = () => {
     const cookies = parseCookies()
