@@ -1,89 +1,91 @@
 import { axiosInstance } from '../axios'
+import {
+  Agency,
+  CreateAgency,
+  GetAllAgencies,
+  GetAllPublicAgencies,
+} from '../model/Agency.types'
+import {
+  Client,
+  ClientCreate,
+  GetAllClients,
+  GetAllPublicClients,
+} from '../model/Client.types'
+import {
+  Login,
+  GetAllUser,
+  User,
+  CreateUser,
+  UpdateUser,
+} from '../model/User.types'
 
 export const api = axiosInstance()
 
 export function loginUser(email: string, password: string) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.post<any>('/auth/login', { email, password })
+  return api.post<Login>('/auth/login', { email, password })
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createUser(data: any) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.post<any>('/users', data)
+export function createUser(data: CreateUser) {
+  return api.post<CreateUser>('/users', data)
 }
 
 export function getCurrentUser() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>('/users/me')
+  return api.get<User>('/users/me')
 }
 
 export function getAllUser(page: number, limit: number) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>('/users', { params: { page, limit } })
+  return api.get<GetAllUser>('/users', { params: { page, limit } })
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function updateUser(data: any) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.put<any>('/users/me', data)
+
+export function updateUser(data: UpdateUser) {
+  return api.put<UpdateUser>('/users/me', data)
 }
 
 export function deleteUser() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.delete<any>('/users/me')
+  return api.delete('/users/me')
 }
 
 // Client
 
 export function getAllClients(page: number, limit: number) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>('/clients', {
+  return api.get<GetAllClients>('/clients', {
     params: {
       page,
       limit,
     },
   })
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createClient(data: any) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.post<any>('/clients', data)
+
+export function createClient(data: ClientCreate) {
+  return api.post<ClientCreate>('/clients', data)
 }
 
 export function getAllPublicClients() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>('/clients/all')
+  return api.get<GetAllPublicClients>('/clients/all')
 }
 
 export function getClientById(clientId: string) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>(`/clients/${clientId}`)
-}
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function updateClient(clientId: string, data: any) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.put<any>(`/clients/${clientId}`, data)
+  return api.get<Client>(`/clients/${clientId}`)
 }
 
+export function updateClient(clientId: string, data: Client) {
+  return api.put<Client>(`/clients/${clientId}`, data)
+}
 export function deleteClient(clientId: string) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.delete<any>(`/clients/${clientId}`)
+  return api.delete(`/clients/${clientId}`)
 }
 
 // Agency
 
 export function getAllPublicAgencies() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>('/agencies/all')
+  return api.get<GetAllPublicAgencies>('/agencies/all')
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function createAgency(data: any) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.post<any>('/agencies', data)
+
+export function createAgency(data: CreateAgency) {
+  return api.post<CreateAgency>('/agencies', data)
 }
 
 export function getAllAgencies(page: number, limit: number) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.get<any>('/agencies/all', {
+  return api.get<GetAllAgencies>('/agencies/all', {
     params: {
       page,
       limit,
@@ -92,11 +94,9 @@ export function getAllAgencies(page: number, limit: number) {
 }
 
 export function deleteAgency(agencyId: string) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.delete<any>(`/agencies/${agencyId}`)
+  return api.delete(`/agencies/${agencyId}`)
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function updateAgency(agencyId: string, data: any) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return api.put<any>(`/agencies/${agencyId}`, data)
+
+export function updateAgency(agencyId: string, data: Agency) {
+  return api.put<Agency>(`/agencies/${agencyId}`, data)
 }
