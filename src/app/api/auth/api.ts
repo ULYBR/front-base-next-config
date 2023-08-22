@@ -1,102 +1,104 @@
 import { axiosInstance } from '../axios'
-import {
-  Agency,
-  CreateAgency,
-  GetAllAgencies,
-  GetAllPublicAgencies,
-} from '../model/Agency.types'
-import {
-  Client,
-  ClientCreate,
-  GetAllClients,
-  GetAllPublicClients,
-} from '../model/Client.types'
-import {
-  Login,
-  GetAllUser,
-  User,
-  CreateUser,
-  UpdateUser,
-} from '../model/User.types'
+import { Agency, CreateAgency } from '../model/Agency.types'
+import { Client, ClientCreate } from '../model/Client.types'
+import { CreateUser, UpdateUser } from '../model/User.types'
 
 export const api = axiosInstance()
 
 export function loginUser(email: string, password: string) {
-  return api.post<Login>('/auth/login', { email, password })
+  const response = api.post('/auth/login', { email, password })
+
+  return response
 }
 export function createUser(data: CreateUser) {
-  return api.post<CreateUser>('/users', data)
+  const response = api.post('/users', data)
+  return response
 }
 
 export function getCurrentUser() {
-  return api.get<User>('/users/me')
+  const response = api.get('/users/me')
+  return response
 }
 
 export function getAllUser(page: number, limit: number) {
-  return api.get<GetAllUser>('/users', { params: { page, limit } })
+  const response = api.get('/users', { params: { page, limit } })
+  return response
 }
 
 export function updateUser(data: UpdateUser) {
-  return api.put<UpdateUser>('/users/me', data)
+  const response = api.put('/users/me', data)
+  return response
 }
 
 export function deleteUser() {
-  return api.delete('/users/me')
+  const response = api.delete('/users/me')
+  return response
 }
 
 // Client
 
 export function getAllClients(page: number, limit: number) {
-  return api.get<GetAllClients>('/clients', {
+  const response = api.get('/clients', {
     params: {
       page,
       limit,
     },
   })
+  return response
 }
 
 export function createClient(data: ClientCreate) {
-  return api.post<ClientCreate>('/clients', data)
+  const response = api.post('/clients', data)
+  return response
 }
 
 export function getAllPublicClients() {
-  return api.get<GetAllPublicClients>('/clients/all')
+  const response = api.get('/clients/all')
+  return response
 }
 
 export function getClientById(clientId: string) {
-  return api.get<Client>(`/clients/${clientId}`)
+  const response = api.get<Client>(`/clients/${clientId}`)
+  return response
 }
 
 export function updateClient(clientId: string, data: Client) {
-  return api.put<Client>(`/clients/${clientId}`, data)
+  const response = api.put(`/clients/${clientId}`, data)
+  return response
 }
 export function deleteClient(clientId: string) {
-  return api.delete(`/clients/${clientId}`)
+  const response = api.delete(`/clients/${clientId}`)
+  return response
 }
 
 // Agency
 
 export function getAllPublicAgencies() {
-  return api.get<GetAllPublicAgencies>('/agencies/all')
+  const response = api.get('/agencies/all')
+  return response
 }
 
 export function createAgency(data: CreateAgency) {
-  return api.post<CreateAgency>('/agencies', data)
+  const response = api.post('/agencies', data)
+  return response
 }
 
 export function getAllAgencies(page: number, limit: number) {
-  return api.get<GetAllAgencies>('/agencies/all', {
+  const response = api.get('/agencies/all', {
     params: {
       page,
       limit,
     },
   })
+  return response
 }
 
 export function deleteAgency(agencyId: string) {
-  return api.delete(`/agencies/${agencyId}`)
+  const response = api.delete(`/agencies/${agencyId}`)
+  return response
 }
 
 export function updateAgency(agencyId: string, data: Agency) {
-  return api.put<Agency>(`/agencies/${agencyId}`, data)
+  const response = api.put(`/agencies/${agencyId}`, data)
+  return response
 }

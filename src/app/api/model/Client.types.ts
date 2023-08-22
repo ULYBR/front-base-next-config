@@ -10,7 +10,7 @@ export type ClientCreate = {
   agencyId: string
   users: User
 }
-export type GetAllPublicClients = {
+export interface GetAllPublicClients {
   id: string
   name: string
 }

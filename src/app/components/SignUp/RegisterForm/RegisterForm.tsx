@@ -8,17 +8,10 @@ import {
   getAllPublicClients,
 } from '@/app/api/auth/api'
 import { useRouter } from 'next/navigation'
+import { GetAllPublicAgencies } from '@/app/api/model/Agency.types'
+import { GetAllPublicClients } from '@/app/api/model/Client.types'
 
 export default function RegisterForm() {
-  interface Agency {
-    id: string
-    name: string
-  }
-
-  interface Customer {
-    id: string
-    name: string
-  }
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUsername] = useState('')
@@ -27,8 +20,8 @@ export default function RegisterForm() {
   const [selectedAgency, setSelectedAgency] = useState('')
   const [selectedCustomer, setSelectedCustomer] = useState('')
   const [error, setError] = useState<string | null>(null)
-  const [agencies, setAgencies] = useState<Agency[]>([])
-  const [customers, setCustomers] = useState<Customer[]>([])
+  const [agencies, setAgencies] = useState<GetAllPublicAgencies[]>([])
+  const [customers, setCustomers] = useState<GetAllPublicClients[]>([])
   const router = useRouter()
 
   useEffect(() => {
@@ -62,13 +55,11 @@ export default function RegisterForm() {
         password,
         name: username,
         agencyId: selectedAgency,
-        customers: [selectedCustomer], // Assuming customers is an array
+        customers: selectedCustomer,
       }
 
-      const response = await createUser(userData)
-      const { token } = response.data
+      await createUser(userData)
 
-      console.log(token)
       console.log('Usuário registrado com sucesso!')
       router.push('/dashboard')
     } catch (error) {

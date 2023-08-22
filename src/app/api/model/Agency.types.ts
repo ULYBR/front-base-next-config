@@ -8,7 +8,7 @@ export type Agency = {
   updatedAt: string
 }
 
-export type GetAllPublicAgencies = {
+export interface GetAllPublicAgencies {
   id: string
   name: string
 }
